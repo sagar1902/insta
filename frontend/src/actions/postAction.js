@@ -5,11 +5,9 @@ import { CLEAR_ERRORS, DELETE_POST_FAIL, DELETE_POST_REQUEST, DELETE_POST_SUCCES
 // New Post
 export const addNewPost = (postData) => async (dispatch) => {
     try {
-
         dispatch({ type: NEW_POST_REQUEST });
-        const config = { header: { "Content-Type": "application/json" } }
-        const { data } = await axios.post("/api/v1/post/new", postData, config);
-
+        // const config = { header: { "Content-Type": "application/json" } }
+        const { data } = await axios.post("/api/v1/post/new", postData, {headers:{ "Content-Type": "multipart/form-data" }});
         dispatch({
             type: NEW_POST_SUCCESS,
             payload: data,
@@ -73,8 +71,8 @@ export const addComment = (postId, comment) => async (dispatch) => {
     try {
 
         dispatch({ type: NEW_COMMENT_REQUEST });
-        const config = { header: { "Content-Type": "application/json" } }
-        const { data } = await axios.post(`/api/v1/post/comment/${postId}`, { comment }, config);
+        // const config = { header: { "Content-Type": "application/json" } }
+        const { data } = await axios.post(`/api/v1/post/comment/${postId}`, { comment }, { "Content-Type": "application/json" });
 
         dispatch({
             type: NEW_COMMENT_SUCCESS,

@@ -27,8 +27,8 @@ export const sendMessage = (msgData) => async (dispatch) => {
     try {
 
         dispatch({ type: NEW_MESSAGE_REQUEST });
-        const config = { header: { "Content-Type": "application/json" } }
-        const { data } = await axios.post('/api/v1/newMessage/', msgData, config);
+        // const config = { header: { "Content-Type": "application/json" } }
+        const { data } = await axios.post('/api/v1/newMessage/', msgData, { "Content-Type": "application/json" });
 
         dispatch({
             type: NEW_MESSAGE_SUCCESS,

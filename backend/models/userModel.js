@@ -26,7 +26,8 @@ const userSchema = new mongoose.Schema({
         select: false,
     },
     avatar: {
-        type: String
+        type: String,
+        default: "noimage",
     },
     bio: {
         type: String,

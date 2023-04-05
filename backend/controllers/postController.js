@@ -3,13 +3,15 @@ const User = require('../models/userModel');
 const catchAsync = require('../middlewares/catchAsync');
 const ErrorHandler = require('../utils/errorHandler');
 const { deleteFile } = require('../utils/awsFunctions');
+const fs = require('fs');
+const path = require('path');
 
 // Create New Post
 exports.newPost = catchAsync(async (req, res, next) => {
 
     const postData = {
         caption: req.body.caption,
-        image: req.file.location,
+        image: req.file.filename,
         postedBy: req.user._id
     }
 
@@ -136,11 +138,8 @@ exports.newComment = catchAsync(async (req, res, next) => {
 
 // Posts of Following
 exports.getPostsOfFollowing = catchAsync(async (req, res, next) => {
-
     const user = await User.findById(req.user._id)
-
     const currentPage = Number(req.query.page) || 1;
-
     const skipPosts = 4 * (currentPage - 1);
 
     const totalPosts = await Post.find({
@@ -159,7 +158,12 @@ exports.getPostsOfFollowing = catchAsync(async (req, res, next) => {
             path: 'user'
         }
     }).sort({ createdAt: -1 }).limit(4).skip(skipPosts)
-
+    // posts.map((post) => {
+    //     // console.log(post)
+    //     // console.log({...post, rimage:fs.readFileSync(path.join('postS3Config',post.image), 'base64')})
+    //     post.rimage = fs.readFileSync(path.join('postS3Config',post.image), {encoding:'base64'})
+    // })
+    // console.log(posts[0])
     return res.status(200).json({
         success: true,
         posts: posts,

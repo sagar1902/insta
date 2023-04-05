@@ -36,17 +36,17 @@ const postS3Config = multerS3({
 });
 
 exports.uploadAvatar = multer({
-    storage: avatarS3Config,
-    limits: {
-        fileSize: 1024 * 1024 * 5
-    }
+    storage: 'avatarS3Config/',
+    // limits: {
+    //     fileSize: 1024 * 1024 * 5
+    // }
 });
 
 exports.uploadPost = multer({
-    storage: postS3Config,
-    limits: {
-        fileSize: 1024 * 1024 * 5
-    }
+    dest: 'postS3Config/',
+    // limits: {
+    //     fileSize: 1024 * 1024 * 5
+    // }
 });
 
 exports.deleteFile = async (fileuri) => {

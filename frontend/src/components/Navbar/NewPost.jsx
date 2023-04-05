@@ -52,10 +52,8 @@ const NewPost = ({ newPost, setNewPost }) => {
         }
 
         const formData = new FormData();
-
-        formData.set("caption", caption);
-        formData.set("post", postImage);
-
+        formData.append("caption", caption);
+        formData.append("location", postImage);
         dispatch(addNewPost(formData));
     }
 
@@ -106,14 +104,16 @@ const NewPost = ({ newPost, setNewPost }) => {
                     <div className="flex flex-col border-l sm:h-[80vh] w-full bg-white">
 
                         <div className="flex gap-3 px-3 py-2 items-center">
-                            <img draggable="false" className="w-11 h-11 rounded-full object-cover" src={user.avatar} alt="avatar" />
+                            <img draggable="false" className="w-11 h-11 rounded-full object-cover" src={`http://localhost:4000/api/postS3Config/${user.avatar}`} alt="avatar" />
                             <span className="text-black text-sm font-semibold">{user.username}</span>
                         </div>
 
 
                         <div className="p-3 w-full border-b relative">
                             <label className="block mb-4">
-                                <input
+                                {postImage?
+                                <button type="button" disabled={loading} className="bg-primary-blue text-white px-6 py-1.5 rounded font-medium hover:drop-shadow-lg uppercase text-sm tracking-wider" onClick={(e)=>{e.preventDefault();setPostImage("")}}>cancel</button>
+                                :<input
                                     type="file"
                                     accept="image/*"
                                     onChange={handleFileChange}
@@ -123,7 +123,7 @@ const NewPost = ({ newPost, setNewPost }) => {
                                     file:text-sm file:cursor-pointer file:font-semibold
                                     file:bg-purple-100 file:text-purple-700
                                     hover:file:bg-purple-200
-                                    "/>
+                                    "/>}
                             </label>
                             <textarea
                                 className="outline-none resize-none h-32 sm:h-auto"

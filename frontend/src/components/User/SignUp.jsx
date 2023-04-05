@@ -44,15 +44,14 @@ const SignUp = () => {
             toast.error("Invalid Username");
             return;
         }
-
-        const formData = new FormData();
-        formData.set("email", email);
-        formData.set("name", name);
-        formData.set("username", username);
-        formData.set("password", password);
-        formData.set("avatar", avatar);
-
-        dispatch(registerUser(formData));
+        // let formData = new FormData();
+        
+        // formData.set("email", email);
+        // formData.set("name", name);
+        // formData.set("username", username);
+        // formData.set("password", password);
+        // formData.append("avatar", avatar);
+        dispatch(registerUser({ email, name, username, password }));
     }
 
     const handleDataChange = (e) => {

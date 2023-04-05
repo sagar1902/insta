@@ -5,7 +5,8 @@ const { uploadAvatar } = require('../utils/awsFunctions');
 
 const router = express();
 
-router.route("/signup").post(uploadAvatar.single('avatar'), signupUser);
+//original// router.route("/signup").post(uploadAvatar.single('avatar'), signupUser);
+router.route("/signup").post(signupUser);
 router.route("/login").post(loginUser);
 router.route("/logout").get(logoutUser);
 

@@ -6,7 +6,7 @@ import { clearErrors, loadUser, updateProfile } from '../../../actions/userActio
 import profile from '../../../assests/images/hero.png';
 import { UPDATE_PROFILE_RESET } from '../../../constants/userConstants';
 import MetaData from '../../Layouts/MetaData';
-
+import TextField from '@mui/material/TextField';
 const UpdateProfile = () => {
 
     const dispatch = useDispatch();
@@ -91,7 +91,7 @@ const UpdateProfile = () => {
             >
                 <div className="flex items-center gap-8 ml-20">
                     <div className="w-11 h-11">
-                        <img draggable="false" className="w-full h-full rounded-full border object-cover" src={avatarPreview ? avatarPreview : oldAvatar} alt="avatar" />
+                        <img draggable="false" className="w-full h-full rounded-full border object-cover" src={avatarPreview ? avatarPreview : `http://localhost:4000/api/postS3Config/${oldAvatar}`} alt="avatar" />
                     </div>
                     <div className="flex flex-col gap-0">
                         <span className="text-xl">{username}</span>
@@ -133,9 +133,9 @@ const UpdateProfile = () => {
                         className="border rounded p-1 w-3/4"
                         type="url"
                         placeholder="Website"
-                        value={website}
+                        value={website?website:""}
                         onChange={(e) => setWebsite(e.target.value)}
-                        required
+                        // required
                     />
                 </div>
                 <div className="flex w-full gap-8 text-right items-start">
@@ -149,6 +149,7 @@ const UpdateProfile = () => {
                         onChange={(e) => setBio(e.target.value)}
                         required
                     >
+                        
                     </textarea>
                 </div>
                 <div className="flex w-full gap-8 text-right items-center">

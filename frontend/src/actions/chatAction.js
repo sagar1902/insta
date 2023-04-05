@@ -27,8 +27,8 @@ export const addNewChat = (userId) => async (dispatch) => {
     try {
 
         dispatch({ type: NEW_CHAT_REQUEST });
-        const config = { header: { "Content-Type": "application/json" } }
-        const { data } = await axios.post("/api/v1/newChat", { receiverId: userId }, config);
+        // const config = { header: { "Content-Type": "application/json" } }
+        const { data } = await axios.post("/api/v1/newChat", { receiverId: userId }, { "Content-Type": "application/json" });
 
         dispatch({
             type: NEW_CHAT_SUCCESS,

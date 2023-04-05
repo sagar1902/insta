@@ -5,7 +5,8 @@ const { uploadPost } = require('../utils/awsFunctions');
 
 const router = express();
 
-router.route("/post/new").post(isAuthenticated, uploadPost.single('post'), newPost);
+// router.route("/post/new").post(isAuthenticated, uploadPost.single('post'), newPost);
+router.route("/post/new").post(isAuthenticated, uploadPost.single('location'), newPost);
 
 router.route("/posts/all").get(allPosts);
 

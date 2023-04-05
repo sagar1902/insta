@@ -24,6 +24,7 @@ const Profile = () => {
     const [followersModal, setFollowersModal] = useState(false);
     const [usersArr, setUsersArr] = useState([]);
     const [savedTab, setSavedTab] = useState(false);
+    // const [currentTab, setCurrentTab] = useState('posts');
 
     const { user, error, loading } = useSelector((state) => state.userDetails);
     const { user: loggedInUser } = useSelector((state) => state.user);
@@ -106,7 +107,7 @@ const Profile = () => {
 
                         {/* profile picture */}
                         <div className="sm:w-1/3 flex justify-center mx-auto sm:mx-0">
-                            <img draggable="false" className="w-40 h-40 rounded-full object-cover" src={user.avatar} alt="" />
+                            <img draggable="false" className="w-40 h-40 rounded-full object-cover" src={`http://localhost:4000/api/postS3Config/${user.avatar}`} alt="" />
                         </div>
 
                         {/* profile details */}

@@ -45,7 +45,7 @@ const ProfileDetails = ({ setProfileToggle }) => {
 
     return (
         <ClickAwayListener onClickAway={() => setProfileToggle(false)}>
-            <div className="absolute w-56 bg-white rounded  drop-shadow top-14 right-0 md:right-72 md:top-14 border">
+            <div className="absolute w-56 bg-white rounded  drop-shadow top-14 right-0 md:right-72 md:top-14 border" onClick={()=>{setProfileToggle(false)}}>
                 <div className="absolute right-5 -top-2 rotate-45 h-4 w-4 bg-white rounded-sm border-l border-t"></div>
 
                 <div className="flex flex-col w-full overflow-hidden">
